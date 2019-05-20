@@ -16,6 +16,11 @@ type Rectangle struct {
 	h float64
 }
 
+type Traingle struct {
+	h float64
+	b float64
+}
+
 // Multi Shape
 type MultiShape struct {
 	shapes []Shape
@@ -36,21 +41,24 @@ func main() {
 	c2 := new(Circle)
 
 	c1 := Circle{12, 10, 7}
-
 	fmt.Println("Circle 1", c1.x, c1.y, c1.r)
 	fmt.Println("Circle 2", c2.x, c2.y, c2.r)
 	fmt.Println("Circle 1 Area:", CalcCircleArea(c1))
 	fmt.Println("Circle 1 Area with method ", c1.area())
 
 	rectangle1 := Rectangle{4.1, 2.3}
+	trngl := Traingle{4, 6}
 
 	fmt.Println("Rectangle", rectangle1.w, rectangle1.h, rectangle1.area())
 	fmt.Println("Total area : ", totalArea(&c1, &rectangle1))
+
+	fmt.Println("Traingle", trngl.h, trngl.b, trngl.area())
 
 	multiShape1 := MultiShape{
 		shapes: []Shape{
 			&c1,
 			&rectangle1,
+			&trngl,
 		},
 	}
 
@@ -71,6 +79,11 @@ func (c *Circle) area() float64 {
 // Method of Rectangle for calculate area
 func (r *Rectangle) area() float64 {
 	return r.w * r.h
+}
+
+// Method of Traingle
+func (t *Traingle) area() float64 {
+	return t.b * t.h / 2
 }
 
 // Method of MultiShape for calculating area
